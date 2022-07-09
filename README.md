@@ -46,7 +46,7 @@ from [vmware/govmomi](https://github.com/vmware/govmomi).
 2.  Source the `govc-autologin.bash` from your `bashrc`, e.g.
 
     ```
-    . ${HOME}/bin/govc-autologin
+    . ${HOME}/bin/govc-autologin/govc-autologin.bash
     ```
 
 3.  Open a new shell, and all is set.
