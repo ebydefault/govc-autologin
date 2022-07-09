@@ -1,8 +1,10 @@
-source ./govc-autologin.conf
-source ${HOME}/bin/govc-autologin/govc-autologin_bash_completion
+GOVC_AUTOLOGIN_DIR=$(dirname "$BASH_SOURCE")
 
-OLD_PATH="$PATH"
+source ${GOVC_AUTOLOGIN_DIR}/govc-autologin.conf
+source ${GOVC_AUTOLOGIN_DIR}/govc-autologin_bash_completion
+
 GOVC_REAL_BIN_PATH="$(dirname "$GOVC_REAL_BIN")"
+          OLD_PATH="$PATH"
 
 if [ -n "$GOVC_LOGGED_IN" ]; then
     # Restore the real govc priority
@@ -14,5 +16,5 @@ if [ -n "$GOVC_LOGGED_IN" ]; then
     fi
 else
     # Override govc priority
-    export PATH="$PWD":"$OLD_PATH"
+    export PATH="$GOVC_AUTOLOGIN_DIR":"$OLD_PATH"
 fi
