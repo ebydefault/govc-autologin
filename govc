@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# The fake govc to enable autologin
+
+LOGIN_CONF=govc-autologin.conf # must be at the same directory with this script
+SECURE_OPT=secure
+
+# Import defaults
+source "$(dirname "$0")/${LOGIN_CONF}"
+
+govc_setenv() {
+    local  PROMPT="$1"
+    local VARNAME="$2"
+    local DEFAULT="$(eval echo '$'${VARNAME})"
+    local  VARVAL
+
+    while [ -z $VARVAL ]; do
+        printf "$PROMPT ("
+
+        if [ "$3"x == "$SECURE_OPT"x ]; then
+            printf "SECURED): "
+            read -s VARVAL
+            echo
+        else
+            printf "default: ${DEFAULT}): "
+            read    VARVAL
+
+            if [ -z "$VARVAL" ]; then
+                VARVAL="$DEFAULT"
+            fi
+        fi
+
+        echo
+    done
+
+    export $VARNAME="$VARVAL"
+}
+
+govc_setenv "vCenter IP address or domain name"                  GOVC_URL
+govc_setenv "vCenter username"                                   GOVC_USERNAME
+govc_setenv "vCenter password"                                   GOVC_PASSWORD $SECURE_OPT
+govc_setenv "Skip vCenter certificate verification [true|false]" GOVC_INSECURE
+
+export GOVC_LAST_ARGS="$@"
+export GOVC_LOGGED_IN="true"
+
+# Open a new shell with govc environment variables
+exec $SHELL
