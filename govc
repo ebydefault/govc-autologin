@@ -10,7 +10,6 @@
 #                                                                                   #
 #####################################################################################
 
-
 LOGIN_CONF=govc-autologin.conf # must be at the same directory with this script
 SECURE_OPT=secure
 
