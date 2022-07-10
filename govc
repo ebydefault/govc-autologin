@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# The fake govc to enable autologin
 #####################################################################################
 #                                                                                   #
 # govc-autologin                                                                    #
