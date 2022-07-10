@@ -28,7 +28,7 @@ case "$VM" in
     * )
         if [ ! -z "$VM" ]; then
             if [ ! -z "$GOVC_LOGGED_IN" ]; then
-                vmrc -U "$GOVC_USERNAME" -P "$GOVC_PASSWORD" -H "$GOVC_URL" -M $(govc-vmid "$VM") &
+                $REAL_VMRC -U "$GOVC_USERNAME" -P "$GOVC_PASSWORD" -H "$GOVC_URL" -M $(govc-vmid "$VM") &
             else
                 # Not yet logged-in
                 export GOVC_VMRC_LAST_ARGS="$VM"

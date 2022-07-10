@@ -10,17 +10,16 @@
 #                                                                                   #
 #####################################################################################
 
-LOGIN_CONF=govc-autologin.conf # must be at the same directory with this script
-SECURE_OPT=secure
+SECURE_OPT="secure"
 
 # Import defaults
-source "$(dirname "$0")/${LOGIN_CONF}"
+source "$GOVC_AUTOLOGIN_CONF"
 
 govc_setenv() {
-    local  PROMPT="$1"
-    local VARNAME="$2"
-    local DEFAULT="$(eval echo '$'${VARNAME})"
-    local  VARVAL
+    local     PROMPT="$1"
+    local    VARNAME="$2"
+    local    DEFAULT="$(eval echo '$'${VARNAME})"
+    local     VARVAL
 
     while [ -z $VARVAL ]; do
         printf "$PROMPT ("

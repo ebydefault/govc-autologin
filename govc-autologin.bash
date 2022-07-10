@@ -1,11 +1,13 @@
 GOVC_AUTOLOGIN_DIR=$(dirname "$BASH_SOURCE")
 
-source ${GOVC_AUTOLOGIN_DIR}/govc-autologin.conf
-source ${GOVC_AUTOLOGIN_DIR}/govc-autologin_bash_completion
+export   GOVC_AUTOLOGIN_CONF="${GOVC_AUTOLOGIN_DIR}"/govc-autologin.conf
+
+source "$GOVC_AUTOLOGIN_CONF"
+source "${GOVC_AUTOLOGIN_DIR}"/govc-autologin_bash_completion
 
 GOVC_REAL_BIN_DIR="$(dirname "$GOVC_REAL_BIN")"
         TOOLS_DIR="$GOVC_AUTOLOGIN_DIR"/tools
-         OLD_PATH="$TOOLS_DIR":"$PATH"
+         OLD_PATH="$PATH"
 
 if [ ! -z "$GOVC_LOGGED_IN" ]; then
     # Restore the real govc priority
@@ -27,5 +29,12 @@ if [ ! -z "$GOVC_LOGGED_IN" ]; then
     fi
 else
     # Override govc priority
-    export PATH="$GOVC_AUTOLOGIN_DIR":"$OLD_PATH"
+    export PATH="$GOVC_AUTOLOGIN_DIR":"$TOOLS_DIR":"$OLD_PATH"
 fi
+
+# Override vmrc
+export REAL_VMRC="$(which vmrc)"
+
+alias vmrc=govc-vmrc
+
+# vim: set syntax=bash:

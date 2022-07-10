@@ -70,12 +70,22 @@ But both `jq` and `vmrc` should be.
 
     Note the difference with previous result.
 
-#   TODO
+#   Tools
 
-Add documentation of the tools.
+Assuming each VM has a unique name accross vSphere datacenters,
+you can get any VM ID or open its console only by its name.
+
+For example:
+
+-   `govc-vmid salt` to get the ID of salt VM.
+
+-   `govc-vmrc ns1` to open ns1 VM console.
+
+    Or better, simply call `vmrc ns1`.
+    Since the real `vmrc` is overridden by `govc-vmrc` using alias,
 
 #   Bugs
 
 While this script and tools still work as expected,
 sometimes I get both `govc-autologin` and `govc-autologin/tools` paths added twice.
-Not sure for now, but I guess it's [synth-shell](https://github.com/andresgongora/synth-shell) who's messing up my Bash.
+Not sure for now, but I guess it's Konsole and yakuake messing up my environment variables.
