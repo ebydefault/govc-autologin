@@ -21,8 +21,6 @@ A fake `govc` executable and a `bashrc` snippet are the playmakers.
 Before logged-in,
 they will masquerade the real `govc` from the path,
 and supply the fake one.
-(The real `govc` doesn't need to be accessible from the path before installation though
-[see [Installation](#Installation)]).
 And after logged-in,
 they hide the fake one,
 and will reveal the real `govc` to the path.
