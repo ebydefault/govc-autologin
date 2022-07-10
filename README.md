@@ -43,7 +43,7 @@ from [vmware/govmomi](https://github.com/vmware/govmomi).
 
 -   For the `govc-vmrc` tool: [vmrc](https://kb.vmware.com/s/article/2091284).
 
-`govc` does not need to be accessible from the path.
+The real `govc` does not need to be accessible from the path.
 But both `jq` and `vmrc` should be.
 
 #   Installation
