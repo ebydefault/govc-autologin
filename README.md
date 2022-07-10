@@ -1,4 +1,4 @@
-#   govc autologin with Bash completion
+#   govc autologin
 
 Too tired to type environment variables everytime I need to start a session,
 too often I forgot to login before firing up some commands,
