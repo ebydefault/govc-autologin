@@ -35,20 +35,18 @@ And this is the trickiest part.
 So I shamelessly modified the `govc_bash_completion`
 from [vmware/govmomi](https://github.com/vmware/govmomi).
 
-#   Installation
+#   Prerequisites
 
-##  Prerequisites
-
--   For the main part: [govc](https://github.com/vmware/govmomi/tree/master/govc).
+-   The fake `govc` needs the real one: [govc](https://github.com/vmware/govmomi/tree/master/govc).
 
 -   For the `govc-vmid` and `govc-vmrc`: [jq](https://github.com/stedolan/jq).
 
--   For the `govc-vmrc` tool: [VMRC](https://kb.vmware.com/s/article/2091284).
+-   For the `govc-vmrc` tool: [vmrc](https://kb.vmware.com/s/article/2091284).
 
 `govc` does not need to be accessible from the path.
 But both `jq` and `vmrc` should be.
 
-##  Steps
+#   Installation
 
 1.  Fill in the `govc-autologin.conf` with your default govc environment.
 
