@@ -42,7 +42,7 @@ govc_setenv "vCenter password"                                   GOVC_PASSWORD $
 govc_setenv "Skip vCenter certificate verification [true|false]" GOVC_INSECURE
 
 export GOVC_LAST_ARGS="$@"
-export GOVC_LOGGED_IN="true"
+export GOVC_LOGGED_IN="1"
 
 # Open a new shell with govc environment variables
 exec $SHELL

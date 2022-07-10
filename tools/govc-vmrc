@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Open VM console by its name with VMRC,
+# assuming each VM has a unique name accross vSphere datacenters.
+
+# Make sure we have logged-in.
+if [ -z "$GOVC_LOGGED_IN" ]; then
+    export GOVC_VMRC_LAST_ARGS="$@"
+    govc
+fi
+
+VM="$1"
+
+if [ -n "$@" ]; then
+    vmrc -U "$GOVC_USERNAME" -P "$GOVC_PASSWORD" -H "$GOVC_URL" -M $(govc-vmid "$VM") &
+else
+    echo "USAGE: $(basename $0) VM_NAME"
+fi

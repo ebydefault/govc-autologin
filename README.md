@@ -37,6 +37,18 @@ from [vmware/govmomi](https://github.com/vmware/govmomi).
 
 #   Installation
 
+##  Prerequisites
+
+-   For the main part: [govc](https://github.com/vmware/govmomi/tree/master/govc).
+
+    `govc` does not need to be accessible from the path.
+
+-   For the `govc-vmrc` tool: [VMRC](https://kb.vmware.com/s/article/2091284).
+
+    On the contrary, `vmrc` should be accessible from the path for this tool to work.
+
+##  Steps
+
 1.  Fill in the `govc-autologin.conf` with your default govc environment.
 
     The real `govc` does not need to be accessible from the path beforehand.
@@ -60,3 +72,13 @@ from [vmware/govmomi](https://github.com/vmware/govmomi).
 5.  Fire up `exit`, and run `which govc` again.
 
     Note the difference with previous result.
+
+#   TODO
+
+Add documentation of the tools.
+
+#   Bugs
+
+While this script and tools still work as expected,
+sometimes I get both `govc-autologin` and `govc-autologin/tools` paths added twice.
+Not sure for now, but I guess it's [synth-shell](https://github.com/andresgongora/synth-shell) who's messing up my Bash.
