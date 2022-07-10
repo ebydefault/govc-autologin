@@ -41,13 +41,12 @@ from [vmware/govmomi](https://github.com/vmware/govmomi).
 
 -   For the main part: [govc](https://github.com/vmware/govmomi/tree/master/govc).
 
-    `govc` does not need to be accessible from the path.
-
 -   For the `govc-vmid` and `govc-vmrc`: [jq](https://github.com/stedolan/jq).
 
 -   For the `govc-vmrc` tool: [VMRC](https://kb.vmware.com/s/article/2091284).
 
-    On the contrary, `vmrc` should be accessible from the path for this tool to work.
+`govc` does not need to be accessible from the path.
+But both `jq` and `vmrc` should be.
 
 ##  Steps
 
