@@ -7,21 +7,21 @@ GOVC_REAL_BIN_DIR="$(dirname "$GOVC_REAL_BIN")"
         TOOLS_DIR="$GOVC_AUTOLOGIN_DIR"/tools
          OLD_PATH="$TOOLS_DIR":"$PATH"
 
-if [ -n "$GOVC_LOGGED_IN" ]; then
+if [ ! -z "$GOVC_LOGGED_IN" ]; then
     # Restore the real govc priority
     export PATH="$GOVC_REAL_BIN_DIR":"$OLD_PATH"
 
-    if [ -n "$GOVC_LAST_ARGS" ]; then
+    if [ ! -z "$GOVC_LAST_ARGS" ]; then
         govc $GOVC_LAST_ARGS  # don't double quote this argument, or it won't work!
         unset GOVC_LAST_ARGS
     fi
 
-    if [ -n "$GOVC_VMID_LAST_ARGS" ]; then
+    if [ ! -z "$GOVC_VMID_LAST_ARGS" ]; then
         govc-vmid $GOVC_VMID_LAST_ARGS
         unset      GOVC_VMID_LAST_ARGS
     fi
 
-    if [ -n "$GOVC_VMRC_LAST_ARGS" ]; then
+    if [ ! -z "$GOVC_VMRC_LAST_ARGS" ]; then
         govc-vmrc $GOVC_VMRC_LAST_ARGS
         unset      GOVC_VMRC_LAST_ARGS
     fi

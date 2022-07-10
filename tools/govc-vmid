@@ -1,21 +1,45 @@
-#!/bin/sh
+#!/bin/bash
 
-# Get VM ID by its name with govc,
-# assuming each VM has a unique name accross vSphere datacenters.
+#####################################################################################
+#                                                                                   #
+# govc-vmid                                                                         #
+#                                                                                   #
+# Get VM ID by its name with govc,                                                  #
+# assuming each VM has a unique name accross vSphere datacenters.                   #
+#                                                                                   #
+# Copyleft 🄯 2022 Ellam ByDefault <ellam.bydefault@gmail.com>. All rights reversed. #
+#                                                                                   #
+#####################################################################################
 
-# Make sure we have logged-in.
-if [ -z "$GOVC_LOGGED_IN" ]; then
-    export GOVC_VMID_LAST_ARGS="$@"
-    govc
-fi
+print_help() {
+    cat <<EOF
+Open VM console by its name with VMRC
+
+USAGE: $(basename $0) VM_NAME
+EOF
+}
 
 VM="$1"
-DC=$(govc ls /*/vm/"$VM" | cut -d '/' -f 2)
 
-if [ -n "$@" ]; then
-    govc vm.info -json -dc "$DC" "$VM"            |\
-        jq '.VirtualMachines[0].Summary.Vm.Value' |\
-        tr -d '"'
-else
-    echo "USAGE: $(basename $0) VM_NAME"
-fi
+case "$VM" in
+    '-h' | '--help' )
+        print_help
+        ;;
+    * )
+        if [ ! -z "$VM" ]; then
+            if [ ! -z "$GOVC_LOGGED_IN" ]; then
+               #DC=$(govc ls /*/vm/"$VM" | cut -d '/' -f 2)
+               #govc vm.info -json -dc "$DC" "$VM"            |\
+                govc vm.info -json /*/vm/"$VM"                |\
+                    jq '.VirtualMachines[0].Summary.Vm.Value' |\
+                    tr -d '"'
+            else
+                # Not yet logged-in
+                export GOVC_VMID_LAST_ARGS="$VM"
+                govc
+            fi
+        else
+            print_help
+        fi
+        ;;
+esac

@@ -1,6 +1,16 @@
 #!/bin/bash
 
 # The fake govc to enable autologin
+#####################################################################################
+#                                                                                   #
+# govc-autologin                                                                    #
+#                                                                                   #
+# The fake govc to enable autologin.                                                #
+#                                                                                   #
+# Copyleft 🄯 2022 Ellam ByDefault <ellam.bydefault@gmail.com>. All rights reversed. #
+#                                                                                   #
+#####################################################################################
+
 
 LOGIN_CONF=govc-autologin.conf # must be at the same directory with this script
 SECURE_OPT=secure
